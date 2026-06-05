@@ -50,7 +50,9 @@ gaffer/
 - **Phase 1 · Board — ✅ DONE.** Pitch rendered with SVG markings, 16 formations as slot/coordinate
   maps, clickable jersey slots (empty = dashed white, selected = gold). Right rail has club name
   input, formation chips, and disabled action buttons. Player search wiring deferred to Phase 2.
-- **Phase 2 · Real players.** Backend player search + autocomplete UI + position validation.
+- **Phase 2 · Real players — ✅ DONE.** `GET /api/players/search` proxies TheSportsDB with
+  10-min in-memory cache and UTF-8 fix. `PlayerSearch` floating overlay opens near clicked slot:
+  debounced input, player photo + club + position badge, gold mismatch hint, Remove button.
 - **Phase 3 · AI core.** Scout, opponent, and match-sim features with robust JSON parsing,
   retries, and prompt caching. (See doc §8.4 for the JSON-truncation fix.)
 - **Phase 4 · Polish + new features.** Chemistry radar, tactics sliders, live match ticker,
@@ -67,6 +69,6 @@ feel printed.
 
 ## Where we left off
 
-Phase 1 is complete. The immediate next task is **Phase 2: real players** — backend player
-search endpoint (`GET /api/players/search?q=&role=`), TheSportsDB integration, autocomplete
-overlay on slot click, and position-mismatch hint.
+Phase 2 is complete. The immediate next task is **Phase 3: AI core** — Scout My XI, Generate
+Opponent, and Simulate Match using the Claude API with structured JSON output, prompt caching,
+robust parsing with retry, and the JSON-truncation fix from design doc §8.4.

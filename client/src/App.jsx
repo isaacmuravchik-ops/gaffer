@@ -8,8 +8,10 @@ const DEFAULT_FORMATION = '4-3-3';
 
 export default function App() {
   const [formationId, setFormationId] = useState(DEFAULT_FORMATION);
+  // players: { [slotIndex]: { id, name, position, club, nationality, photoUrl } }
   const [players, setPlayers] = useState({});
   const [selectedIdx, setSelectedIdx] = useState(null);
+  const [clubName, setClubName] = useState('');
 
   const formation = formations.find((f) => f.id === formationId);
 
@@ -20,6 +22,24 @@ export default function App() {
 
   function handleSlotClick(idx) {
     setSelectedIdx((prev) => (prev === idx ? null : idx));
+  }
+
+  function handlePlayerSelect(idx, player) {
+    setPlayers((prev) => ({ ...prev, [idx]: player }));
+    setSelectedIdx(null);
+  }
+
+  function handlePlayerRemove(idx) {
+    setPlayers((prev) => {
+      const next = { ...prev };
+      delete next[idx];
+      return next;
+    });
+    setSelectedIdx(null);
+  }
+
+  function handleSearchClose() {
+    setSelectedIdx(null);
   }
 
   const filledCount = Object.keys(players).length;
@@ -43,6 +63,9 @@ export default function App() {
             players={players}
             selectedIdx={selectedIdx}
             onSlotClick={handleSlotClick}
+            onPlayerSelect={handlePlayerSelect}
+            onPlayerRemove={handlePlayerRemove}
+            onSearchClose={handleSearchClose}
           />
         </section>
 
@@ -54,6 +77,8 @@ export default function App() {
               type="text"
               placeholder="My United XI"
               maxLength={30}
+              value={clubName}
+              onChange={(e) => setClubName(e.target.value)}
             />
           </div>
 
@@ -62,9 +87,7 @@ export default function App() {
           </div>
 
           <div className="rail-section rail-section--status">
-            <span className="status-badge">
-              {filledCount}/11 players
-            </span>
+            <span className="status-badge">{filledCount}/11 players</span>
           </div>
 
           <div className="rail-actions">
@@ -78,15 +101,6 @@ export default function App() {
               Simulate Match
             </button>
           </div>
-
-          {selectedIdx !== null && (
-            <div className="slot-info">
-              <p className="slot-info-label">
-                Selected: <strong>{formation.slots[selectedIdx].role}</strong>
-              </p>
-              <p className="slot-info-hint">Player search coming in Phase 2</p>
-            </div>
-          )}
         </aside>
       </main>
 

@@ -1,6 +1,7 @@
 import JerseySlot from './JerseySlot';
+import PlayerSearch from './PlayerSearch';
 
-export default function Pitch({ slots, players, selectedIdx, onSlotClick }) {
+export default function Pitch({ slots, players, selectedIdx, onSlotClick, onPlayerSelect, onPlayerRemove, onSearchClose }) {
   return (
     <div className="pitch-wrap">
       <div className="pitch">
@@ -44,6 +45,17 @@ export default function Pitch({ slots, players, selectedIdx, onSlotClick }) {
             onClick={() => onSlotClick(i)}
           />
         ))}
+
+        {/* Player search overlay */}
+        {selectedIdx !== null && (
+          <PlayerSearch
+            slot={slots[selectedIdx]}
+            currentPlayer={players[selectedIdx] || null}
+            onSelect={(player) => onPlayerSelect(selectedIdx, player)}
+            onRemove={() => onPlayerRemove(selectedIdx)}
+            onClose={onSearchClose}
+          />
+        )}
       </div>
     </div>
   );
