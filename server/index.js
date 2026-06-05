@@ -209,6 +209,7 @@ app.get("/api/players/search", async (req, res) => {
   try {
     const url = `https://www.thesportsdb.com/api/v1/json/${SPORTSDB_KEY}/searchplayers.php?p=${encodeURIComponent(q)}`;
     const response = await fetch(url);
+    if (response.status === 429) throw new Error("Rate limited by TheSportsDB — try again in a few minutes");
     if (!response.ok) throw new Error(`TheSportsDB returned ${response.status}`);
     const data = await response.json();
 
