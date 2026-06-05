@@ -62,7 +62,7 @@ export default function PlayerSearch({ slot, currentPlayer, onSelect, onRemove, 
   }, [onClose]);
 
   const search = useCallback(async (q) => {
-    if (q.length < 2) { setResults([]); setLoading(false); return; }
+    if (q.length < 1) { setResults([]); setLoading(false); return; }
     setLoading(true);
     setError(null);
     try {
@@ -81,7 +81,7 @@ export default function PlayerSearch({ slot, currentPlayer, onSelect, onRemove, 
     const val = e.target.value;
     setQuery(val);
     clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => search(val), 250);
+    debounceRef.current = setTimeout(() => search(val), 180);
   }
 
   // Position the panel: left half of pitch → open right; right half → open left
@@ -120,7 +120,7 @@ export default function PlayerSearch({ slot, currentPlayer, onSelect, onRemove, 
       <div className="ps-results">
         {loading && <p className="ps-status">Searching…</p>}
         {error && <p className="ps-status ps-status--error">{error}</p>}
-        {!loading && !error && results.length === 0 && query.length >= 2 && (
+        {!loading && !error && results.length === 0 && query.length >= 1 && (
           <p className="ps-status">No players found</p>
         )}
         {results.map((player) => {

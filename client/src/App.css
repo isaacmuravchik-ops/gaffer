@@ -80,6 +80,7 @@
 }
 
 .pitch-wrap {
+  position: relative;
   width: min(420px, 54vw);
   aspect-ratio: 3 / 4;
   border: 3px solid var(--ink);

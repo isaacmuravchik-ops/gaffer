@@ -46,17 +46,18 @@ export default function Pitch({ slots, players, selectedIdx, onSlotClick, onPlay
           />
         ))}
 
-        {/* Player search overlay */}
-        {selectedIdx !== null && (
-          <PlayerSearch
-            slot={slots[selectedIdx]}
-            currentPlayer={players[selectedIdx] || null}
-            onSelect={(player) => onPlayerSelect(selectedIdx, player)}
-            onRemove={() => onPlayerRemove(selectedIdx)}
-            onClose={onSearchClose}
-          />
-        )}
       </div>
+
+      {/* PlayerSearch lives outside .pitch so overflow:hidden doesn't clip it */}
+      {selectedIdx !== null && (
+        <PlayerSearch
+          slot={slots[selectedIdx]}
+          currentPlayer={players[selectedIdx] || null}
+          onSelect={(player) => onPlayerSelect(selectedIdx, player)}
+          onRemove={() => onPlayerRemove(selectedIdx)}
+          onClose={onSearchClose}
+        />
+      )}
     </div>
   );
 }

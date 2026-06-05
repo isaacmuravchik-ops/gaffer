@@ -60,7 +60,10 @@ app.get("/api/players/search", async (req, res) => {
     if (!response.ok) throw new Error(`TheSportsDB returned ${response.status}`);
     const data = await response.json();
 
-    const players = (data.player || []).slice(0, 10).map(normalizePlayer);
+    const players = (data.player || [])
+      .filter((p) => p.strSport?.toLowerCase() === 'soccer')
+      .slice(0, 20)
+      .map(normalizePlayer);
     setCache(cacheKey, players);
     res.json(players);
   } catch (err) {

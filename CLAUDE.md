@@ -14,8 +14,11 @@ opponent, and simulate the match. It's styled like a vintage matchday programme.
 - **Frontend:** React + Vite (in `client/`)
 - **Backend:** Node + Express (in `server/`) — a thin proxy that holds all secret keys,
   calls the Claude API and a football data API, validates, and caches.
-- **Football data:** Start on TheSportsDB (free, CORS-friendly), normalized behind the
-  backend so it can be swapped for API-Football later without touching the frontend.
+- **Football data:** Currently TheSportsDB (free, no key needed for basic search). **Known
+  limitation: their free API returns at most 1–2 results per query** — it is designed for
+  full-name exact lookups, not browsable partial-name search. All data access is behind
+  `GET /api/players/search` so the frontend never changes; swap to API-Football when ready
+  (see "API migration" note below).
 - **AI:** Claude API (the design doc specifies a Sonnet model — confirm the current model
   string from the docs when wiring this up in Phase 3).
 
@@ -66,6 +69,23 @@ Vintage matchday-programme look: warm newsprint paper `#F2E9D4`, ink `#211B14`,
 stamp red `#B8352A`, pitch green `#1F4A32`, gold `#C98A2B`. Display type Anton, labels
 Oswald, body Newsreader. One clear action per screen. Avoid generic AI UI — it should
 feel printed.
+
+## API migration — TheSportsDB → API-Football
+
+When the TheSportsDB search limitation becomes a blocker, swap to
+[API-Football](https://www.api-football.com/) (free tier ~100 req/day, paid tiers available):
+
+1. Add `API_FOOTBALL_KEY=<your_key>` to `server/.env`
+2. In `server/index.js`, replace the TheSportsDB fetch block with:
+   ```
+   GET https://v3.football.api-sports.io/players?search=<q>&league=39&season=2024
+   headers: x-apisports-key: <API_FOOTBALL_KEY>
+   ```
+3. Normalize the response to the same `{ id, name, position, club, nationality, photoUrl }`
+   shape — the frontend stays untouched.
+
+API-Football returns paginated results with proper partial-name matching, current club, and
+real positions (Goalkeeper / Defender / Midfielder / Attacker).
 
 ## Where we left off
 
