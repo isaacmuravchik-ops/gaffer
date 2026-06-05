@@ -1,0 +1,48 @@
+/* Design tokens */
+:root {
+  --paper:      #F2E9D4;
+  --ink:        #211B14;
+  --stamp-red:  #B8352A;
+  --pitch:      #1F4A32;
+  --pitch-dark: #183d29;
+  --gold:       #C98A2B;
+  --ink-faint:  rgba(33, 27, 20, 0.15);
+
+  --font-display: 'Anton', Impact, sans-serif;
+  --font-label:   'Oswald', 'Arial Narrow', sans-serif;
+  --font-body:    'Newsreader', Georgia, serif;
+
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  color-scheme: light;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--paper);
+  min-height: 100svh;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-label);
+  border: none;
+  background: none;
+}
+
+input {
+  font-family: var(--font-body);
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
