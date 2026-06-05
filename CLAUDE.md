@@ -56,8 +56,11 @@ gaffer/
 - **Phase 2 · Real players — ✅ DONE.** `GET /api/players/search` proxies TheSportsDB with
   10-min in-memory cache and UTF-8 fix. `PlayerSearch` floating overlay opens near clicked slot:
   debounced input, player photo + club + position badge, gold mismatch hint, Remove button.
-- **Phase 3 · AI core.** Scout, opponent, and match-sim features with robust JSON parsing,
-  retries, and prompt caching. (See doc §8.4 for the JSON-truncation fix.)
+- **Phase 3 · AI core — ✅ DONE.** Three POST endpoints (/api/scout, /api/opponent, /api/match)
+  using claude-sonnet-4-6 with cacheable system prompts, robust JSON extraction (strip fences,
+  first{…}last}), and one-shot retry on parse failure. Three result screens (ScoutReport,
+  OpponentCard, MatchReport) styled in the vintage programme look. Requires ANTHROPIC_API_KEY
+  in server/.env.
 - **Phase 4 · Polish + new features.** Chemistry radar, tactics sliders, live match ticker,
   difficulty dial.
 - **Phase 5 · Persistence.** Save/share cards, budget mode, tournament bracket.
@@ -89,6 +92,5 @@ real positions (Goalkeeper / Defender / Midfielder / Attacker).
 
 ## Where we left off
 
-Phase 2 is complete. The immediate next task is **Phase 3: AI core** — Scout My XI, Generate
-Opponent, and Simulate Match using the Claude API with structured JSON output, prompt caching,
-robust parsing with retry, and the JSON-truncation fix from design doc §8.4.
+Phase 3 is complete. The immediate next task is **Phase 4: Polish + new features** — chemistry
+radar, tactics sliders, live match ticker, difficulty dial, and design refinements.

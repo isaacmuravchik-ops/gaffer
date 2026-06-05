@@ -333,6 +333,453 @@
   cursor: not-allowed;
 }
 
+/* ── Rail error + result links ── */
+.rail-error {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-style: italic;
+  color: var(--stamp-red);
+  padding: 6px 0;
+}
+
+.rail-results {
+  border-top: 1px solid var(--ink-faint);
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.result-link {
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-align: left;
+  padding: 3px 0;
+  opacity: 0.6;
+  transition: opacity 0.1s;
+}
+.result-link:hover { opacity: 1; }
+
+/* ── Result screens (scout / opponent / match) ── */
+.result-screen {
+  flex: 1;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 24px 0 48px;
+  width: 100%;
+}
+
+.result-back {
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.5;
+  margin-bottom: 24px;
+  display: block;
+  transition: opacity 0.1s;
+}
+.result-back:hover { opacity: 1; }
+
+.result-header {
+  border-bottom: 3px solid var(--ink);
+  padding-bottom: 10px;
+  margin-bottom: 24px;
+}
+
+.result-kicker {
+  font-family: var(--font-label);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--stamp-red);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.result-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 48px);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* ── Scout report ── */
+.scout-hero {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.scout-rating {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  background: var(--stamp-red);
+  color: var(--paper);
+  padding: 10px 16px;
+  line-height: 1;
+}
+
+.scout-rating-number {
+  font-family: var(--font-display);
+  font-size: 52px;
+  letter-spacing: -0.02em;
+}
+
+.scout-rating-label {
+  font-family: var(--font-label);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.scout-style-tag {
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.scout-summary {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+  border-left: 4px solid var(--gold);
+  padding-left: 16px;
+  margin-bottom: 28px;
+  font-style: italic;
+}
+
+.scout-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.scout-col-label {
+  font-family: var(--font-label);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.5;
+  margin-bottom: 10px;
+}
+
+.scout-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.scout-list li {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.4;
+  padding-left: 20px;
+  position: relative;
+}
+
+.scout-list--strengths li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--pitch);
+  font-weight: 700;
+}
+
+.scout-list--weaknesses li::before {
+  content: '✗';
+  position: absolute;
+  left: 0;
+  color: var(--stamp-red);
+  font-weight: 700;
+}
+
+.scout-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-top: 1px solid var(--ink-faint);
+  padding-top: 20px;
+}
+
+.scout-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.scout-stat-label {
+  font-family: var(--font-label);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.45;
+}
+
+.scout-stat-value {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* ── Opponent card ── */
+.opponent-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.opponent-formation {
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.opponent-divider { opacity: 0.3; font-size: 18px; }
+
+.opponent-style {
+  font-family: var(--font-label);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.6;
+}
+
+.teamsheet {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+
+.teamsheet-label {
+  font-family: var(--font-label);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.45;
+  margin-bottom: 16px;
+}
+
+.teamsheet-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-bottom: 12px;
+}
+
+.teamsheet-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 72px;
+}
+
+.teamsheet-role {
+  font-family: var(--font-label);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.45;
+}
+
+.teamsheet-name {
+  font-family: var(--font-label);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.opponent-threat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-left: 4px solid var(--stamp-red);
+  padding-left: 14px;
+}
+
+.threat-label {
+  font-family: var(--font-label);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--stamp-red);
+}
+
+.threat-text {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* ── Match report ── */
+.scoreboard {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 20px 24px;
+  margin-bottom: 8px;
+}
+
+.scoreboard-team {
+  flex: 1;
+}
+
+.scoreboard-team--away {
+  text-align: right;
+}
+
+.scoreboard-name {
+  font-family: var(--font-display);
+  font-size: clamp(14px, 2.5vw, 20px);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.scoreboard-team--winner .scoreboard-name {
+  color: var(--gold);
+}
+
+.scoreboard-score {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px;
+  flex-shrink: 0;
+}
+
+.scoreboard-score span {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 56px);
+  line-height: 1;
+}
+
+.score--winner { color: var(--gold); }
+.score-sep { opacity: 0.35; font-size: 32px !important; }
+
+.draw-label {
+  font-family: var(--font-label);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  opacity: 0.4;
+  margin-bottom: 20px;
+}
+
+.match-timeline {
+  margin: 20px 0;
+  border-top: 1px solid var(--ink-faint);
+  padding-top: 16px;
+}
+
+.timeline-label {
+  font-family: var(--font-label);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.45;
+  margin-bottom: 12px;
+}
+
+.timeline-event {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.timeline-event--home { padding-left: 0; }
+.timeline-event--away { padding-left: 24px; }
+
+.ev-minute {
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink);
+  opacity: 0.45;
+  min-width: 28px;
+}
+
+.ev-icon { font-size: 14px; }
+
+.ev-text {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.motm {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 20px 0;
+  padding: 14px 16px;
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.motm-label {
+  font-family: var(--font-label);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.motm-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.match-summary {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  font-style: italic;
+  border-left: 4px solid var(--ink-faint);
+  padding-left: 16px;
+  color: var(--ink);
+}
+
 /* ── Player search overlay ── */
 .player-search-panel {
   position: absolute;
